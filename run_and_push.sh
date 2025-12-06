@@ -13,6 +13,10 @@ fi
 ARG1="$1"
 ARG2="$1"
 
+
+echo "Pulling latest changes from origin..."
+git pull origin main
+
 echo "Running create_pages.py with argument: $ARG"
 python3 create_pages.py $ARG1 "$ARG2"
 
