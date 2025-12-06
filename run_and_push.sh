@@ -11,7 +11,7 @@ if [ -z "$1" ]; then
 fi
 
 ARG1="$1"
-ARG2="$2"
+ARG2="$1"
 
 echo "Running create_pages.py with argument: $ARG"
 python3 create_pages.py $ARG1 "$ARG2"
