@@ -7,7 +7,7 @@ set -e
 
 cd ../backend
 
-python run_creator.py 2
+python run_creator.py $1
 
 
 cd ../frontend
