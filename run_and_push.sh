@@ -5,6 +5,13 @@ set -e
 
 # Ensure argument is provided
 
+cd ../backend
+
+python run_creator.py 2
+
+
+cd ../frontend
+
 echo "Pulling latest changes from origin..."
 git pull origin main
 
