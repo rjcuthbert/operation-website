@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>31 The Cross</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_6280faf6e26a.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>31 The Cross</h1>
+            <div class="category">Restaurant</div>
+            <p class="hero-description">Experience the charm of 31 The Cross in Worcester! Enjoy amazing cocktails, delicious food, and friendly service in a stylish, welcoming environment. Perfect for any occasion!</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>31 The Cross, Worcester WR1 3PZ</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:01905 724242" class="hero-phone-link">01905 724242</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">31 The Cross, Worcester WR1 3PZ</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2289304999999997,52.1880856,-2.2189305,52.198085600000006&layer=mapnik&marker=52.1930856,-2.2239305"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=31%20The%20Cross%2C%20Worcester%20WR1%203PZ" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">11:00–15:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">11:00–15:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">11:00–15:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">10:00–16:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">10:00–16:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">10:00–16:00</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">10:00–16:00</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>WINE</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Shiraz</span>
+                        <span class="item-price">£23</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Malbec</span>
+                        <span class="item-price">£26</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Merlot</span>
+                        <span class="item-price">£26</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pinot Noir</span>
+                        <span class="item-price">£25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Rioja</span>
+                        <span class="item-price">£25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chablis</span>
+                        <span class="item-price">£22</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sauvignon Blanc</span>
+                        <span class="item-price">£24</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chardonnay</span>
+                        <span class="item-price">£24</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pinot Grigio</span>
+                        <span class="item-price">£24</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>CHAMPAGNE & SPARKLING</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Prosecco, Extra dry</span>
+                        <span class="item-price">£25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Rosé Prosecco</span>
+                        <span class="item-price">£26</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Moet Chandon</span>
+                        <span class="item-price">£60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Moet Chandon Rosé</span>
+                        <span class="item-price">£65</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Nosecco (0%)</span>
+                        <span class="item-price">£20</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>GIN</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Bombay Sapphire</span>
+                        <span class="item-price">£4</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tanqueray No. 10</span>
+                        <span class="item-price">£4.5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Hendricks</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mermaid Gin</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Malfy Gin</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mermaid Pink Gin</span>
+                        <span class="item-price">£5.5</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>TEQUILA</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Patron (Silver)</span>
+                        <span class="item-price">£7</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Don Julio</span>
+                        <span class="item-price">£7</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>VODKA</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Grey Goose</span>
+                        <span class="item-price">£7</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Absolut Vodka</span>
+                        <span class="item-price">£4.5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Absolut Vanilla</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>BEER & CIDER</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Moretti (330ml)</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peroni (330ml)</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">SAH Huckaback 5.5%</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Thatchers Cider</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Guiness 0%</span>
+                        <span class="item-price">£4</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Days Brewing 0%</span>
+                        <span class="item-price">£4</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>RUM</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Captain Morgan</span>
+                        <span class="item-price">£4.5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mermaid Spiced</span>
+                        <span class="item-price">£4.5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Kraken Spiced</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Malibu</span>
+                        <span class="item-price">£4.5</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>WHISKEY</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Jack Daniels</span>
+                        <span class="item-price">£4.5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Macallan</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Jameson</span>
+                        <span class="item-price">£4.5</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SOFT DRINKS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Fever-tree tonic</span>
+                        <span class="item-price">£2.5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fentimans</span>
+                        <span class="item-price">£3.2</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Coca Cola</span>
+                        <span class="item-price">£3.2</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lemonade</span>
+                        <span class="item-price">£3.2</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fruit Juice</span>
+                        <span class="item-price">£3.5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Still or Sparkling Water</span>
+                        <span class="item-price">£2.5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Soda Water</span>
+                        <span class="item-price">£2.5</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>COCKTAILS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Old Fashioned</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Negroni</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Classic Martini</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Espresso Martini</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pornstar Martini</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mojito Elderflower & Strawberry</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">White Russian</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Bloody Mary</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Long Island Tea</span>
+                        <span class="item-price">£11</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tequila Sunrise</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Margarita</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spicy Margarita</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">French Martini</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Kir Royale</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mimosa</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>MOCKTAILS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Old Passioned</span>
+                        <span class="item-price">£6</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Berry Nojito</span>
+                        <span class="item-price">£6</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Minty Limeade</span>
+                        <span class="item-price">£6</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>PLATES & NIBBIES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Olives</span>
+                        <span class="item-price">£4</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Bread</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Halloumi fries</span>
+                        <span class="item-price">£7</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Courgette fries</span>
+                        <span class="item-price">£7</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Soup of the Day</span>
+                        <span class="item-price">£7</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Add cheese toastie</span>
+                        <span class="item-price">£3</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>PANINIS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Brie & Bacon</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef, pickles & mustard mayo</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tuna</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Grilled Veg with Mozzarella</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>BOARDS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Charcuterie Board (per person)</span>
+                        <span class="item-price">£15</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cheese Board (per person)</span>
+                        <span class="item-price">£15</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>TATOR TOTS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Loaded Tator Tots</span>
+                        <span class="item-price">£12</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>FOR THE KIDS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Kids afternoon tea</span>
+                        <span class="item-price">£10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fish or Sausage with chips</span>
+                        <span class="item-price">£7</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fish Finger Sandwich</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cheese and tomato toastie</span>
+                        <span class="item-price">£4</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cheese and ham sandwich</span>
+                        <span class="item-price">£4</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SANDWICHES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Fish Goujons with tartare sauce</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">BLT</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">American Club</span>
+                        <span class="item-price">£9</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Add fries</span>
+                        <span class="item-price">£4</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Add truffle & parmesan fries</span>
+                        <span class="item-price">£6</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SALADS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Caesar salad</span>
+                        <span class="item-price">£10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Buddha Bowl</span>
+                        <span class="item-price">£10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">American Cob salad</span>
+                        <span class="item-price">£12</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>AFTERNOON TEA</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Classic afternoon (per person)</span>
+                        <span class="item-price">£35</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Add a bottle of Prosecco</span>
+                        <span class="item-price">£+15</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Go bottomless unlimited prosecco (per person)</span>
+                        <span class="item-price">£+35</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Caviar & Champagne (per person)</span>
+                        <span class="item-price">£85</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Gentlemans afternoon tea (per person)</span>
+                        <span class="item-price">£40</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>CAKES & PASTRIES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Freshly Baked Croissant</span>
+                        <span class="item-price">£3</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Toasted Teacake</span>
+                        <span class="item-price">£3</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">House baked Crumpets</span>
+                        <span class="item-price">£3</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Toast & Preserves</span>
+                        <span class="item-price">£3</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Scones</span>
+                        <span class="item-price">£5</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cheese Scones</span>
+                        <span class="item-price">£6</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cakes & Breakfast Pastries</span>
+                        <span class="item-price">£4</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Wheelchair accessible</div><div class="feature-tag">Outdoor seating</div><div class="feature-tag">Serves great coffee</div><div class="feature-tag">Serves great dessert</div><div class="feature-tag">Serves alcohol</div><div class="feature-tag">Serves beer</div><div class="feature-tag">Serves wine</div><div class="feature-tag">Serves breakfast</div><div class="feature-tag">Serves lunch</div><div class="feature-tag">Has live music</div><div class="feature-tag">Casual</div><div class="feature-tag">Cosy</div><div class="feature-tag">Family friendly</div><div class="feature-tag">Accepts credit cards</div><div class="feature-tag">Accepts debit cards</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_c1c1d22e870f.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b7b4202d5469.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ff63ab6c8b6a.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_719c0bd8335c.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_17ff19d8606b.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6280faf6e26a.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8d1a6e6bebe3.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_bb9abe46f55a.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_33c1dce30706.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d1e5165e93ef.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_43c0f3347914.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2b71ae0169a4.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c2001c318ab2.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_26433081abe0.jpg" alt="31 The Cross - By owner, Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_48ed96053bfa.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_84e5e6a235c3.jpg" alt="31 The Cross - By owner, Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a7cf0748e104.jpg" alt="31 The Cross - By owner, Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_38dd5ac3d658.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_69f83b9cce06.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6dfdce76d47b.jpg" alt="31 The Cross - By owner, Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f8e2f574ea07.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_132fc1a4083e.jpg" alt="31 The Cross - By owner, Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7e60999bfa64.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e3a2964d9ffb.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3dc1d354613b.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_93ccc4a7865c.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_316e81e3d2a6.jpg" alt="31 The Cross - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>
