@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lin Seng</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_a38d88337a8d.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Lin Seng</h1>
+            <div class="category">Chinese Takeaway</div>
+            <p class="hero-description">Lin Seng in Filton offers delicious Chinese and chip shop favorites at great prices! Known for its fresh, flavorful food and friendly, family-run service. Cash only.</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>175 Conygre Grove, Filton, Bristol BS34 7HZ</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:0117 969 3260" class="hero-phone-link">0117 969 3260</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">175 Conygre Grove, Filton, Bristol BS34 7HZ</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.5692334,51.5037306,-2.5592334,51.5137306&layer=mapnik&marker=51.5087306,-2.5642334"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=175%20Conygre%20Grove%2C%20Filton%2C%20Bristol%20BS34%207HZ" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">17:00–22:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">17:00–22:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">17:00–22:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">17:00–22:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">12:00–14:00, 17:00–22:30</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">12:00–14:00, 17:00–22:30</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time closed">Closed</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>Soups</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken & Sweetcorn Soup</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken & Mushroom Soup</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Hot & Spicy Soup</span>
+                        <span class="item-price">£3.20</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Appetisers</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Aromatic Duck (Whole)</span>
+                        <span class="item-price">£30.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Aromatic Duck (Half)</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Aromatic Duck (Quarter)</span>
+                        <span class="item-price">£11.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sesame Prawn Toast</span>
+                        <span class="item-price">£6.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Pancake Roll</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Spring Rolls</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Won Ton (3)</span>
+                        <span class="item-price">£4.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Seaweed</span>
+                        <span class="item-price">£3.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Prawn Crackers</span>
+                        <span class="item-price">£2.20</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Spare Rib Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Spare Ribs in BBQ Sauce</span>
+                        <span class="item-price">£6.70</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spare Ribs Peking Style</span>
+                        <span class="item-price">£6.70</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Szechuan Spare Ribs</span>
+                        <span class="item-price">£6.70</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sweet & Sour Spare Ribs</span>
+                        <span class="item-price">£6.70</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spare Ribs in Salt & Chilli</span>
+                        <span class="item-price">£6.70</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Vegetarian Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Plain Beansprouts</span>
+                        <span class="item-price">£4.90</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Mixed Vegetables</span>
+                        <span class="item-price">£5.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Bamboo Shoots & Water Chestnuts</span>
+                        <span class="item-price">£4.90</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Salt & Chilli Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">King Prawns in Salt & Chilli</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Chicken in Salt & Chilli</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Pork in Salt & Chilli</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Wings in Salt & Chilli (7)</span>
+                        <span class="item-price">£5.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Chilli Chips</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Chilli Chips (Large)</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Sweet & Sour Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Sweet & Sour King Prawn Balls (9)</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sweet & Sour Chicken Balls (10)</span>
+                        <span class="item-price">£6.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sweet & Sour Pork Balls (10)</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Canton Sweet & Sour King Prawns</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Canton Sweet & Sour Chicken</span>
+                        <span class="item-price">£6.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Canton Sweet & Sour Pork</span>
+                        <span class="item-price">£6.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sweet & Sour Chicken Wings (7)</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Curry Dishes (Mild)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Special Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£7.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimp Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£7.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£7.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£7.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£7.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Vegetable Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£6.90</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Curry with Boiled Rice or Chips</span>
+                        <span class="item-price">£6.90</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Chow Mein Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Lin Seng Special Chow Mein</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Special Chow Mein</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Singapore Chow Mein</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Chow Mein</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimp Chow Mein</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck Chow Mein</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Chow Mein</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Chow Mein</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Chow Mein</span>
+                        <span class="item-price">£5.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork Chow Mein</span>
+                        <span class="item-price">£6.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Chow Mein</span>
+                        <span class="item-price">£6.90</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Vegetable Chow Mein</span>
+                        <span class="item-price">£6.90</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Plain Chow Mein</span>
+                        <span class="item-price">£4.90</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Fried Rice Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Lin Seng Special Fried Rice</span>
+                        <span class="item-price">£5.70</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Special Fried Rice</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Singapore Fried Rice</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Fried Rice</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimp Fried Rice</span>
+                        <span class="item-price">£7.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Young Chow Fried Rice</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck Fried Rice</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Fried Rice</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Fried Rice</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Fried Rice</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork Fried Rice</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Fried Rice</span>
+                        <span class="item-price">£6.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Vegetable Fried Rice</span>
+                        <span class="item-price">£6.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Egg Fried Rice</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Plain Boiled Rice</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">1/2 Egg Fried Rice & 1/2 Chips with Any Sauce</span>
+                        <span class="item-price">£4.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">1/2 Boiled Rice & 1/2 Chips with Any Sauce</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Omelette Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Special Omelette with Chips</span>
+                        <span class="item-price">£6.90</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Omelette with Chips</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimp Omelette with Chips</span>
+                        <span class="item-price">£6.90</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Omelette with Chips</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Ham Omelette with Chips</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Omelette with Chips</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cheese Omelette with Chips</span>
+                        <span class="item-price">£6.20</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Plain Omelette with Chips</span>
+                        <span class="item-price">£6.20</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Foo Yung Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Special Foo Yung</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Foo Yung</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimp Foo Yung</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork Foo Yung</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mushroom Foo Yung</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Chop Suey Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Special Chop Suey</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Chop Suey</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimp Chop Suey</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck Chop Suey</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Chop Suey</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Chop Suey</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Chop Suey</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork Chop Suey</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Mushroom Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Special with Mushrooms</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawns with Mushrooms</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimps with Mushrooms</span>
+                        <span class="item-price">£7.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck with Mushrooms</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb with Mushrooms</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef with Mushrooms</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Mushrooms</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork with Mushrooms</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mushrooms in Gravy</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Green Pepper in Black Bean Sauce Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">King Prawns with Green Pepper</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimps with Green Pepper</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck with Green Pepper</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb with Green Pepper</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef with Green Pepper</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Green Pepper</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork with Green Pepper</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Oyster Sauce Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">King Prawns in Oyster Sauce</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimps in Oyster Sauce</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck in Oyster Sauce</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb in Oyster Sauce</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef in Oyster Sauce</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken in Oyster Sauce</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork in Oyster Sauce</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Pineapple Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">King Prawns with Pineapple</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck with Pineapple</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef with Pineapple</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Pineapple</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork with Pineapple</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Tomato Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">King Prawns with Tomatoes</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck with Tomatoes</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb with Tomatoes</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef with Tomatoes</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Tomatoes</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork with Tomatoes</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Chef's Special Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Shredded Chilli Beef</span>
+                        <span class="item-price">£8.10</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Canton Beef in Special Sauce</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Canton Chicken in Special Sauce</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Canton Lamb in Special Sauce</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Canton Duck in Special Sauce</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Roast Duck Chinese Style</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Roast Chicken & Pork Chinese Style</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Roast Chicken Chinese Style</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Roast Pork Chinese Style</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lemon Chicken</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>English Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Fish</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Quarter Chicken</span>
+                        <span class="item-price">£3.20</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Wing</span>
+                        <span class="item-price">£3.20</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Leg</span>
+                        <span class="item-price">£2.90</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pasties</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sausages (Plate or Battered), Small (2)</span>
+                        <span class="item-price">£2.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Jumbo</span>
+                        <span class="item-price">£2.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fish Cakes (2)</span>
+                        <span class="item-price">£2.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beefburger</span>
+                        <span class="item-price">£2.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chips</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peas</span>
+                        <span class="item-price">£0.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Ginger & Spring Onion Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">King Prawns with Ginger & Spring Onion</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimps with Ginger & Spring Onion</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck with Ginger & Spring Onion</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb with Ginger & Spring Onion</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef with Ginger & Spring Onion</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Ginger & Spring Onion</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork with Ginger & Spring Onion</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Cashew Nut Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">King Prawns with Cashew Nuts</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck with Cashew Nuts</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef with Cashew Nuts</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Cashew Nuts</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork with Cashew Nuts</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Kung Pao Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Kung Pao King Prawns</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Kung Pao Duck</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Kung Pao Lamb</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Kung Pao Beef</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Kung Pao Chicken</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Kung Pao Pork</span>
+                        <span class="item-price">£6.60</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Satay Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Special Satay</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Satay</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shrimp Satay</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck Satay</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Satay</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Satay</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Satay</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork Satay</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Szechuan Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Szechuan Special</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Szechuan King Prawns</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Szechuan Duck</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Szechuan Lamb</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Szechuan Beef</span>
+                        <span class="item-price">£7.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Szechuan Chicken</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Szechuan Pork</span>
+                        <span class="item-price">£6.30</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Sauces</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Curry Sauce</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Gravy Sauce</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sweet & Sour Sauce</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">BBQ Sauce</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Canton Sauce</span>
+                        <span class="item-price">£2.20</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Desserts</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Banana Fritters</span>
+                        <span class="item-price">£2.70</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pineapple Fritters</span>
+                        <span class="item-price">£2.70</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Apple Fritters</span>
+                        <span class="item-price">£2.70</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Takeaway</div><div class="feature-tag">Quick Bite</div><div class="feature-tag">Popular for lunch</div><div class="feature-tag">Popular for dinner</div><div class="feature-tag">Serves late-night food</div><div class="feature-tag">Casual</div><div class="feature-tag">Free parking</div><div class="feature-tag">Plenty of parking</div><div class="feature-tag">Cash only</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_a38d88337a8d.jpg" alt="Lin Seng - By owner, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>
