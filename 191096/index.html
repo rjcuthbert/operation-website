@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal Tandoori</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_a61dbbab1ac4.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Taj Mahal Tandoori</h1>
+            <div class="category">Indian takeaway</div>
+            <p class="hero-description">Experience the best Indian cuisine in Newry! Enjoy flavorful dishes, friendly service, and convenient delivery. Serving up deliciousness late into the night.</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>5 Monaghan St, Newry BT35 6BB</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:028 3025 1844" class="hero-phone-link">028 3025 1844</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">5 Monaghan St, Newry BT35 6BB</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-6.3485895999999995,54.1719278,-6.3385896,54.181927800000004&layer=mapnik&marker=54.1769278,-6.3435896"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=5%20Monaghan%20St%2C%20Newry%20BT35%206BB" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">16:00–23:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">16:00–23:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time closed">Closed</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">16:00–23:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">16:00–23:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">16:00–23:00</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">16:00–23:00</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>Appetisers</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Pakora</span>
+                        <span class="item-price">£3.75</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Pakora</span>
+                        <span class="item-price">£2.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Onion Bhaji</span>
+                        <span class="item-price">£2.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Poori</span>
+                        <span class="item-price">£3.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka</span>
+                        <span class="item-price">£3.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka</span>
+                        <span class="item-price">£3.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tandoori Chicken</span>
+                        <span class="item-price">£3.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shami Kebab</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Reshmi Kebab</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Samosa</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Chat</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tandoori King Prawn</span>
+                        <span class="item-price">£4.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Aloo Chat</span>
+                        <span class="item-price">£2.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Cocktail</span>
+                        <span class="item-price">£2.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Papadum</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spicy Papadum</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Burka Kebab</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Starter</span>
+                        <span class="item-price">£4.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Chef's Recommendations</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Shatkora Chicken</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shatkora Gost</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Indian Spice Tikka Mushroom Dopiaza</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Indian Spice Chicken Special Curry</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tandoori King Prawn Massala</span>
+                        <span class="item-price">£12.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Makhini</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Balti Supreme</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Kharai Balti</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Murgh Chana Balti</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Chilli Balti</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Murgh Massala Balti</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Garlic Balti</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Massala Balti</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Passanda Balti</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chef's Special Moris Massala</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mince Chilli Special</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Zalzal</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Zalzal</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Badam Pasanda</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Moghlai</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Moghlai</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Alfrezi (Special)</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Butter Chicken</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Shashlik Massala</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Shashlik Massala</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Tandoori Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Tandoori Chicken</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Shashlik</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Shashlik</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tandoori King Prawn</span>
+                        <span class="item-price">£12.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tandoori Mix</span>
+                        <span class="item-price">£11.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Massala Dishes (Mild)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Massala</span>
+                        <span class="item-price">£8.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Massala</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Mushroom Massala</span>
+                        <span class="item-price">£8.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Mushroom Massala</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Massala</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Massala</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Massala</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Korma Dishes (Very Mild)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Korma</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Korma</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Korma</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Korma</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Korma</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Kashmiri Dishes (Mild)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Kashmiri</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Kashmiri</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Kashmiri</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Kashmiri</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Kashmiri</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken or Lamb</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Malai Dishes (Mild)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Malai</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Malai</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Malai</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Malai</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Pasanda Dishes (Mild)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Pasanda</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Pasanda</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Pasanda</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Pasanda</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Pasanda</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Curry Dishes (Medium)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Curry</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Curry</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Curry</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Curry</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Curry</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Curry</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Curry</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Bhuna Dishes (Medium)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Bhuna</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Bhuna</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Bhuna</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Bhuna</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Bhuna</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Bhuna</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Bhuna</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Rogan Josh Dishes (Medium)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Rogan Josh</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Rogan Josh</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Rogan Josh</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Rogan Josh</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Rogan Josh</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Rogan Josh</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Rogan Josh</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Dopiaza Dishes (Medium)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Dopiaza</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Dopiaza</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Dopiaza</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Dopiaza</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Dopiaza</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Dopiaza</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Dopiaza</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Sag Dishes (Medium)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Sag</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Sag</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Sag</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Sag</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Sag</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Sag</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Balti Dishes (Medium)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Balti</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Balti</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Balti</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Balti</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Balti</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tandoori Balti</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Kharai Dishes (Medium)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Kharai</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Kharai</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Kharai</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Dhansak Dishes (Sweet, Medium or Hot)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Dhansak</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Dhansak</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Dhansak</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Dhansak</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Dhansak</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Dhansak</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Dhansak</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Pathia Dishes (Sweet, Medium or Hot)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Pathia</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Pathia</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Pathia</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Pathia</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Pathia</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Pathia</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Pathia</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Jalfrezi Dishes (Fairly Hot)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Jalfrezi</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Tikka Jalfrezi</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Jalfrezi</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Jalfrezi</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Malabar Dishes (Fairly Hot)</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Malabar</span>
+                        <span class="item-price">£7.25</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Malabar</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Malabar</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Malabar</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Malabar</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chef's Special Malabar</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Delivery</div><div class="feature-tag">Takeaway</div><div class="feature-tag">Late-night food</div><div class="feature-tag">Quick bite</div><div class="feature-tag">Casual</div><div class="feature-tag">No-contact delivery</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_2e62d650e007.jpg" alt="Taj Mahal Tandoori - By owner, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a61dbbab1ac4.jpg" alt="Taj Mahal Tandoori - By owner, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4a47ed8bb8d6.jpg" alt="Taj Mahal Tandoori - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0554f5435bb2.jpg" alt="Taj Mahal Tandoori - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_72f5f7e12aaa.jpg" alt="Taj Mahal Tandoori - By owner, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>
