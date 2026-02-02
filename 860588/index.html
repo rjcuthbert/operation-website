@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janam</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_603010a87632.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Janam</h1>
+            <div class="category">Fast food restaurant</div>
+            <p class="hero-description">Craving a fantastic kebab? Janam in Manchester is your go-to! Open late, serving amazing food with quick service and friendly staff. Try our famous cheesy chip naan!</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>78 Portland St, Manchester M1 4QX</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:0161 228 2485" class="hero-phone-link">0161 228 2485</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">78 Portland St, Manchester M1 4QX</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2473551,53.4729144,-2.2373551000000003,53.482914400000006&layer=mapnik&marker=53.4779144,-2.2423551"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=78%20Portland%20St%2C%20Manchester%20M1%204QX" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">10:30–22:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">10:30–04:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">10:30–04:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">10:30–04:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">10:30–04:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">10:30–04:00</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">10:30–04:00</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>pizza</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">MARGHERITA</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">BBQ CHICKEN</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">MEATFEAST</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">GODFATHER</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">PEPPERONI PASSION</span>
+                        <span class="item-price">£6.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">HOT 'N' SPICY</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">COUNTRY CHICKEN</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">VEGETARIAN</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">SEAFOOD</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">HAWAIIAN</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">CAPRI</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">GARLIC BREAD</span>
+                        <span class="item-price">£6.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">JANAM SPECIAL</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">EXTRA TOPPINGS</span>
+                        <span class="item-price">£1.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>starters</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">CHIPS</span>
+                        <span class="item-price">£1.20</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">CHEESY CHIPS</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">CHIP NAAN & CHEESE</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">CHIP BARM</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">SWEET POTATO FRIES</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">MOZZARELLA STICKS</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">TRAY OF DONER</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">TRAY OF CHICKEN DONER</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">TRAY OF SALAD</span>
+                        <span class="item-price">£1.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">DIPS</span>
+                        <span class="item-price">£0.70</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>kebabs</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">CHICKEN KEBAB</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">DONER KEBAB</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">MIXED KEBAB</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">CHICKEN SHAWARMA & CHIPS</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">FALAFEL KEBAB</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">CHICKEN MEAT & CHIPS</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">DONER MEAT & CHIPS</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>burgers</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">CHICKEN BURGER & CHIPS</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">CHEESE BURGER & CHIPS</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">DONNER BURGER & CHIPS</span>
+                        <span class="item-price">£3.99</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>sides</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">5 WINGS & CHIPS</span>
+                        <span class="item-price">£3.99</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">6 NUGGETS & CHIPS</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">CHICKEN WRAP & CHIPS</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">9" PIZZA ANY 2 TOPPINGS</span>
+                        <span class="item-price">£5.99</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Takeaway</div><div class="feature-tag">Dine-in</div><div class="feature-tag">Lunch</div><div class="feature-tag">Dinner</div><div class="feature-tag">Late-night food</div><div class="feature-tag">Quick bite</div><div class="feature-tag">Halal food</div><div class="feature-tag">Serves coffee</div><div class="feature-tag">Good for solo dining</div><div class="feature-tag">Casual</div><div class="feature-tag">Accepts credit cards</div><div class="feature-tag">Accepts debit cards</div><div class="feature-tag">Accepts mobile payments</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_8a82a4f35a6e.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_603010a87632.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7045ab527a4b.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a94f19bb7e1a.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_04ef1f755110.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6daff754d2f7.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5893aafaa88b.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_704d1706ac94.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_01819b3d0c9a.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_760a86c5b151.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fc51b6d9a924.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d785d89040b6.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7f1b95086280.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c3c9e66b5b11.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9c48781903d5.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8a30bd3844ee.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e42793291b07.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a01ffa07dc97.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_dfc032322834.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_cc20c4d5d733.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_497b96d6695c.jpg" alt="Janam - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d0ba30fcb2d8.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_de01809cc42f.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_609914484674.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ac69d3135125.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ff24bfeadae7.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7e71cf811970.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6adb66638693.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_79ed3d277fbd.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b1b2fc723cb7.jpg" alt="Janam - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1da7d1a3bd61.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2ae39951e477.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_993fa6fce365.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_eaf80f8b54eb.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_cf27ec8cf947.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e563321a8308.jpg" alt="Janam - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_86df547a1678.jpg" alt="Janam - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7de9d0cc8601.jpg" alt="Janam - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_62ef665b21cc.jpg" alt="Janam - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b6433e90bd47.jpg" alt="Janam - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8e41d019e7da.jpg" alt="Janam - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_68f2ff96456e.jpg" alt="Janam - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_821fe82275da.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0297c25721b3.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_956300b864d6.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1596a585f404.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4d4c7ef5d67f.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b7169c1e4bc7.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_127e43ebfcb6.jpg" alt="Janam - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>

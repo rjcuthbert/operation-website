@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wok ‘N’ Roll</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_695eb2d3e4f3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Wok ‘N’ Roll</h1>
+            <div class="category">Wok restaurant</div>
+            <p class="hero-description">Experience fresh, delicious Chinese cuisine in Manchester! Enjoy generous portions, fast service, and a diverse menu perfect for lunch or dinner. Dine-in, takeaway, or delivery available!</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>304-306 Oxford Rd, Manchester M13 9NS</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:0161 302 8519" class="hero-phone-link">0161 302 8519</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">304-306 Oxford Rd, Manchester M13 9NS</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2353475,53.4577834,-2.2253475000000003,53.4677834&layer=mapnik&marker=53.4627834,-2.2303475"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=304-306%20Oxford%20Rd%2C%20Manchester%20M13%209NS" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">11:30–21:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">11:30–21:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">11:30–21:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">11:30–21:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">11:30–21:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">11:30–21:00</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">11:30–21:00</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>Starters</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Har Gau</span>
+                        <span class="item-price">£6.20</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Siu Mai</span>
+                        <span class="item-price">£6.20</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Steamed Pork Dumplings</span>
+                        <span class="item-price">£6.20</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Dumplings</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Pork Spring Rolls</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Vegetable Spring Rolls</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sesame Prawn on Toast</span>
+                        <span class="item-price">£8.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Spare Ribs</span>
+                        <span class="item-price">£11.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spare Ribs in Sweet & Sour Sauce</span>
+                        <span class="item-price">£11.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Chicken Wings</span>
+                        <span class="item-price">£8.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Wings in Sweet & Sour Sauce</span>
+                        <span class="item-price">£8.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Special Mixed Platter</span>
+                        <span class="item-price">£15.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Platter</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Seafood</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Steamed Sea Bass</span>
+                        <span class="item-price">£22.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Squid</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Steamed Jumbo King Prawn (with shell)</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dry Fried Jumbo King Prawn (with shell)</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pan Fried Jumbo King Prawn (with shell)</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Jumbo King Prawn (with shell)</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dry Fried Jumbo King Prawn (with dry chili)</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Squid Tentacles (with Chili & Garlic)</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Squid Tentacles</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Cantonese Cuisine</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Cantonese Roasted Duck (Half)</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cantonese Roasted Duck (Whole)</span>
+                        <span class="item-price">£30.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Steamed Chicken Leg</span>
+                        <span class="item-price">£12.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Steamed Free Range Corn Fed Chicken</span>
+                        <span class="item-price">£19.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Three Roasted Meat Combination</span>
+                        <span class="item-price">£16.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duel Roasted Meat Combination</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Roasted Crispy Pork Belly</span>
+                        <span class="item-price">£14.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Char Siu Pork</span>
+                        <span class="item-price">£14.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork Chop in Cantonese Sauce</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chopped Pork Ribs in Sweet & Sour Sauce</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Squid & Morning Glory</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Pork Intestines</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir fried Pork Tripe</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Beef with Broccoli</span>
+                        <span class="item-price">£13.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Vegetable Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Morning Glory</span>
+                        <span class="item-price">£16.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Morning Glory</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Choi Sum</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Chinese Leaves</span>
+                        <span class="item-price">£10.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Broccoli</span>
+                        <span class="item-price">£9.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Sichuan Cuisine</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Sliced Beef in Spicy Chili Oil</span>
+                        <span class="item-price">£16.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Basa Fillet/Sea Bass</span>
+                        <span class="item-price">£15.80/22.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dry Fried Squid Tentacles</span>
+                        <span class="item-price">£17.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dry Fried Spicy Chicken</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dry Fried Pork Intestines</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Pork Intestines</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Thin sliced Pork Belly</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Minced Pork & Green Beans</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dry Fried Minced Pork & Green Beans</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Shredded Potato</span>
+                        <span class="item-price">£11.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Chinese Leaves</span>
+                        <span class="item-price">£10.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Soup Noodle Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Beef Brisket Soup Noodle</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cantonese Roasted Duck Soup Noodle</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Three Roasted Meats Soup Noodle</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Won Ton Soup Noodle</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shredded Pork & Preserved Vegetable Soup Noodle Or Ho Fun</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Noodle Dishes</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Singapore Chow Mein or Vermicelli</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Special Chow Mein</span>
+                        <span class="item-price">£15.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn Chow Mein</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken or Beef or Char Siu Chow Mein</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shredded Pork & Fine Beans Chow Mein</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Vegetables Chow Mein</span>
+                        <span class="item-price">£10.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Vegetables with Fungus Chow Mein</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dry Fried Beef Ho Fun</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dry Fried King Prawn Chicken Ho Fun</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Brisket Chow Mein</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Stir Fried Chopped Ribs in Black Bean Sauce Chow Mein</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dry Stir Fried Ho Fun In Soy Sauce</span>
+                        <span class="item-price">£10.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Soup</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Won Ton Soup</span>
+                        <span class="item-price">£6.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken & Sweet Com Soup</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Noodle Soup</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peking Hot & Sour Soup</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Hot & Sour Soup</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sweet Com Soup</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken & Pork Tripe</span>
+                        <span class="item-price">£15.00/28.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chinese Herbal Chicken Soup</span>
+                        <span class="item-price">£28.80/38.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Cold Starter</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Cantonese White Cut Chicken Leg</span>
+                        <span class="item-price">£11.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spicy Shredded Chicken</span>
+                        <span class="item-price">£9.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spicy Pig Tripe Salad</span>
+                        <span class="item-price">£9.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shredded Cucumber Salad</span>
+                        <span class="item-price">£5.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Shredded Potato Salad</span>
+                        <span class="item-price">£5.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spicy Chicken Leg Sichuan Style</span>
+                        <span class="item-price">£11.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Chef Special</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Pork Chop</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper King Prawn</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Crispy Shredded Beef</span>
+                        <span class="item-price">£11.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Shredded Beef in Sweet Chilli Sauce</span>
+                        <span class="item-price">£11.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Chicken</span>
+                        <span class="item-price">£11.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salt & Pepper Aubergine</span>
+                        <span class="item-price">£10.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>Casserole</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Braised Fish Fillet & Crispy Pork Belly</span>
+                        <span class="item-price">£18.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Satay Beef</span>
+                        <span class="item-price">£16.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Chinese Mushroom</span>
+                        <span class="item-price">£15.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Braised Beef Brisket</span>
+                        <span class="item-price">£14.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Minced Pork & Salted Fish</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Minced Pork & Tofu</span>
+                        <span class="item-price">£13.80</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Delivery</div><div class="feature-tag">Takeaway</div><div class="feature-tag">Dine-in</div><div class="feature-tag">Lunch</div><div class="feature-tag">Dinner</div><div class="feature-tag">Quick bite</div><div class="feature-tag">Casual</div><div class="feature-tag">Good for groups</div><div class="feature-tag">Accepts credit cards</div><div class="feature-tag">Accepts debit cards</div><div class="feature-tag">Wheelchair accessible</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_c173f41bc26b.jpg" alt="Wok ‘N’ Roll - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4497cb1e3e8e.jpg" alt="Wok ‘N’ Roll - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a31ccc10ddda.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c3287ee3baf4.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_bd9e5dab47b0.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_baddc738ac69.jpg" alt="Wok ‘N’ Roll - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_695eb2d3e4f3.jpg" alt="Wok ‘N’ Roll - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_222b3a61caf8.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_29297ccae7fa.jpg" alt="Wok ‘N’ Roll - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c12f084890a7.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b4c586e0f541.jpg" alt="Wok ‘N’ Roll - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9129603dcd72.jpg" alt="Wok ‘N’ Roll - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e2a6948844c1.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5aa4a0091852.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_07e73a1e15fa.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_62d28059f085.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_cd8d9c3ee520.jpg" alt="Wok ‘N’ Roll - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a3ab01013a9d.jpg" alt="Wok ‘N’ Roll - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1439840031b7.jpg" alt="Wok ‘N’ Roll - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_448a9447bd5d.jpg" alt="Wok ‘N’ Roll - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_21f2e1888152.jpg" alt="Wok ‘N’ Roll - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_74e7a03c9f9a.jpg" alt="Wok ‘N’ Roll - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_28cb66905e6c.jpg" alt="Wok ‘N’ Roll - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_06e52dad4a70.jpg" alt="Wok ‘N’ Roll - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9c59f3167446.jpg" alt="Wok ‘N’ Roll - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_557ddd3227bf.jpg" alt="Wok ‘N’ Roll - By owner, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5c10fa6f5017.jpg" alt="Wok ‘N’ Roll - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_10693335732f.jpg" alt="Wok ‘N’ Roll - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8d823b5e5171.jpg" alt="Wok ‘N’ Roll - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e2fed62d5ec0.jpg" alt="Wok ‘N’ Roll - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a4146db505ed.jpg" alt="Wok ‘N’ Roll - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ef886a08b560.jpg" alt="Wok ‘N’ Roll - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b1effbcacb95.jpg" alt="Wok ‘N’ Roll - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1f22417cdc25.jpg" alt="Wok ‘N’ Roll - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>

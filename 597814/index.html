@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dixy Chicken (Rusholme)</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_13dd65993359.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Dixy Chicken (Rusholme)</h1>
+            <div class="category">Fried chicken takeaway</div>
+            <p class="hero-description">Dixy Chicken in Manchester offers fresh, tasty fried chicken and amazing chips! Popular for late-night eats and quick bites, with friendly service and a clean environment. Perfect for groups and students!</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>9 Wilmslow Rd, Manchester M14 5TB</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:0161 879 9661" class="hero-phone-link">0161 879 9661</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">9 Wilmslow Rd, Manchester M14 5TB</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2313489,53.452613899999996,-2.2213489,53.4626139&layer=mapnik&marker=53.4576139,-2.2263489"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=9%20Wilmslow%20Rd%2C%20Manchester%20M14%205TB" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">11:00–05:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">11:00–05:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">11:00–05:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">11:00–05:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">11:00–05:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">11:00–05:00</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">11:00–05:00</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>main</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Burger Meal</span>
+                        <span class="item-price">£6.99</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peri Peri Burger Meal</span>
+                        <span class="item-price">£5.79</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cheeseburger Meal</span>
+                        <span class="item-price">£5.29</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fish Burger</span>
+                        <span class="item-price">£4.49</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Veggie Burger</span>
+                        <span class="item-price">£4.49</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peri Peri Chicken</span>
+                        <span class="item-price">£7.49</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peri Peri Wings</span>
+                        <span class="item-price">£6.49</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peri Peri Burger</span>
+                        <span class="item-price">£5.79</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peri Peri Wrap</span>
+                        <span class="item-price">£4.99</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peri Pitta</span>
+                        <span class="item-price">£4.99</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Offers delivery</div><div class="feature-tag">Offers takeaway</div><div class="feature-tag">Serves dine-in</div><div class="feature-tag">Popular for lunch</div><div class="feature-tag">Popular for dinner</div><div class="feature-tag">Quick bite</div><div class="feature-tag">Serves small plates</div><div class="feature-tag">Serves late-night food</div><div class="feature-tag">Good for groups</div><div class="feature-tag">Good for kids</div><div class="feature-tag">Has kids' menu</div><div class="feature-tag">Casual</div><div class="feature-tag">Accepts credit cards</div><div class="feature-tag">Accepts debit cards</div><div class="feature-tag">Accepts NFC mobile payments</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_57e21508b904.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_13dd65993359.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0aa36da87d73.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_667305ba5c87.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2bbec0b89736.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_de94ec3483ad.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_070b08d64761.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_545a38e8fe32.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c6d611d62266.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9dac593472d9.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2d3ca536b127.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f3db4e7d6a77.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_cff6dc52af72.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_59230d60355d.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_33c89791d22f.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1b302f9412e7.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c6a1f83abc7a.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fc6d0a844cdb.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9e86086c293a.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7ac4fc272bf2.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8f0ba0ddd203.jpg" alt="Dixy Chicken (Rusholme) - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d40175e27624.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f3a8d26b6f6e.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c8c91250ab40.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3417fa1b99e0.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b53f8d3e0eeb.jpg" alt="Dixy Chicken (Rusholme) - Vibe, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe, Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3a7a3b80657a.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_10d60b75ca51.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0e651d452f80.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_50bcf4447022.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e8bb441560f1.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_754bcfa9c442.jpg" alt="Dixy Chicken (Rusholme) - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1e8bc1a86640.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_af7de7f76f41.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_39206294067d.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_337938d6f039.jpg" alt="Dixy Chicken (Rusholme) - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0e0e28fe90e5.jpg" alt="Dixy Chicken (Rusholme) - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_bb56a4abbdbf.jpg" alt="Dixy Chicken (Rusholme) - Vibe, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe, Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_20530b8f33f2.jpg" alt="Dixy Chicken (Rusholme) - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_04e888e56812.jpg" alt="Dixy Chicken (Rusholme) - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a45d1c3923a3.jpg" alt="Dixy Chicken (Rusholme) - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b11332a2ff6a.jpg" alt="Dixy Chicken (Rusholme) - Vibe, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe, Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9fc48bae1722.jpg" alt="Dixy Chicken (Rusholme) - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_018c6b262361.jpg" alt="Dixy Chicken (Rusholme) - Vibe, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe, Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a51cfd5f4f01.jpg" alt="Dixy Chicken (Rusholme) - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6cf816e1c67d.jpg" alt="Dixy Chicken (Rusholme) - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_05344b258f56.jpg" alt="Dixy Chicken (Rusholme) - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_64001c47fb03.jpg" alt="Dixy Chicken (Rusholme) - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>

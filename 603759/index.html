@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madina Grill</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_5b8ac5b3dcbe.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Madina Grill</h1>
+            <div class="category">Pakistani restaurant</div>
+            <p class="hero-description">Experience authentic Pakistani cuisine in Manchester! Madina Grill offers flavorful dishes, friendly service, and a welcoming atmosphere. Dine-in, takeaway, or delivery available. Plenty of parking!</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>37 Higher Ardwick, Manchester M12 6DB</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:0161 273 3406" class="hero-phone-link">0161 273 3406</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">37 Higher Ardwick, Manchester M12 6DB</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2280981,53.466915699999994,-2.2180981,53.4769157&layer=mapnik&marker=53.4719157,-2.2230981"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=37%20Higher%20Ardwick%2C%20Manchester%20M12%206DB" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">10:00–22:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">10:00–22:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">10:00–22:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">10:00–22:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">10:00–22:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">10:00–22:00</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">10:00–21:00</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>STARTERS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Mix Starters</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Chops (4)</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Seekh Kebab (2)</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Seekh Kebab (2)</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Pakora (5)</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Onion Bhajis (2)</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Samosa (2) (meat/veg)</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Poppadoms (2)</span>
+                        <span class="item-price">£1.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Red Onions</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mango Chutney</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mint Sauce</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chilli Sauce</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>KEBABS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Donner Kebab</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Donner Kebab</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Kebab</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Doner & Chicken Tikka</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka & Seekh</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Seekh Kebab (2)</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Seekh Kebab (3)</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Donner Meat & Chips</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Special Mix</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>CHEF'S SPECIAL</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Karahi</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Jalfrezi</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Veg</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Bhuna</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Korma</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tikka Masala</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Rojan Josh</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb</span>
+                        <span class="item-price">£10.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn</span>
+                        <span class="item-price">£12.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Veg</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Balti</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dopiaza</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Prawn</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Veg</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>BURGERS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Burger</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef/Lamb Burger</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Grill Chicken Burger</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Grill Peri Peri Burger</span>
+                        <span class="item-price">£3.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cheese Burger</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">King Burger</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Donner Burger</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Burger</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Onion Bhaji Burger</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chips Barm</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>GRILL MAIN COURSE</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">1/2 Tandoori Chicken</span>
+                        <span class="item-price">£6.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Full Tandoori Chicken</span>
+                        <span class="item-price">£9.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Shashlik</span>
+                        <span class="item-price">£10.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Chops</span>
+                        <span class="item-price">£12.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tandoori Mix Grill</span>
+                        <span class="item-price">£13.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>BIRYANI DISHES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Biryani</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Biryani</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Tikka Biryani</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetable Biryani</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>ASIAN STYLE</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Curry</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Curry</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Special</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Special</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Nihari</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Paya</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Desi on bone</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Desi on bone</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Palak Gosht</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Alo Keema</span>
+                        <span class="item-price">£7.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lahori Chanay</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Daal Chanay</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Aloo Palak</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mix Vegetable</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Daal Mash</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Offers kerbside pickup</div><div class="feature-tag">Has no-contact delivery</div><div class="feature-tag">Offers delivery</div><div class="feature-tag">Offers takeaway</div><div class="feature-tag">Serves dine-in</div><div class="feature-tag">Popular for lunch</div><div class="feature-tag">Popular for dinner</div><div class="feature-tag">Good for groups</div><div class="feature-tag">Good for kids</div><div class="feature-tag">Quick bite</div><div class="feature-tag">Casual</div><div class="feature-tag">Accepts credit cards</div><div class="feature-tag">Accepts debit cards</div><div class="feature-tag">Accepts NFC mobile payments</div><div class="feature-tag">Free parking</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_094e7b0e9178.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e394ba0959f4.jpg" alt="Madina Grill - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1d20f6f46779.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_21870aee20f1.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a8c9a7f770d7.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_56fa67755b33.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6042a82959b9.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_215b336cfeda.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a8092580f522.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_737b687dd4a4.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_57cfb42bcaff.jpg" alt="Madina Grill - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f3fa5e796061.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a99a9c46ef4e.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2a24e69a57be.jpg" alt="Madina Grill - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d98b079bd855.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3ee5741dd0da.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9b6fc28a68bc.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fb626b229235.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5b8ac5b3dcbe.jpg" alt="Madina Grill - Vibe, By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe, By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_20d622fa2f2e.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5dae225badc9.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_638fbf1b7ea8.jpg" alt="Madina Grill - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5d8a53e937c4.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_049953f5a4fe.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ae085352e7ff.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_75a537dd5069.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6c20f3fe0e02.jpg" alt="Madina Grill - Vibe, By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe, By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_daf57ec0aa38.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9829d6587658.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a9c96a8bd3ce.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3b1d0588b79e.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b656eff5853a.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a84f4aa4addb.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e68f23d88022.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9e3ddf488368.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_043eed8820a2.jpg" alt="Madina Grill - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b2378f28dbae.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6bde3ec6fbe3.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e74cdb4b255f.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_cf222c1d72f9.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_750e5f1f3275.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5abd85f5ce12.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c7c87894db0e.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6ee70140daa9.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_81d428ff9276.jpg" alt="Madina Grill - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_aa580a71a8b2.jpg" alt="Madina Grill - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f1859cb6a0bd.jpg" alt="Madina Grill - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ce65996093d6.jpg" alt="Madina Grill - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1353ccdc6e12.jpg" alt="Madina Grill - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0f91c68c5567.jpg" alt="Madina Grill - By owner, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_20182d838260.jpg" alt="Madina Grill - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_401c455cea63.jpg" alt="Madina Grill - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9b9a407b66ae.jpg" alt="Madina Grill - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_bc3bd357e0f4.jpg" alt="Madina Grill - By owner, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2b9e7a08bd56.jpg" alt="Madina Grill - By owner, Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner, Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>

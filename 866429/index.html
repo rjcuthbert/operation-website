@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pho No. 1</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_0a6950e1fa0c.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Pho No. 1</h1>
+            <div class="category">Vietnamese restaurant</div>
+            <p class="hero-description">Experience authentic Vietnamese cuisine in Manchester! Pho No. 1 offers delicious dishes, friendly service, and a cozy atmosphere. Enjoy options for everyone, including vegan choices. Visit us today!</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>146 Oldham Rd, Ancoats, Manchester M4 6BG</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:0161 536 3635" class="hero-phone-link">0161 536 3635</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">146 Oldham Rd, Ancoats, Manchester M4 6BG</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2343782,53.4819758,-2.2243782000000003,53.491975800000006&layer=mapnik&marker=53.4869758,-2.2293782"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=146%20Oldham%20Rd%2C%20Ancoats%2C%20Manchester%20M4%206BG" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">11:00–22:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time closed">Closed</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">11:00–22:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">11:00–22:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">11:00–22:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">11:00–22:00</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">11:00–22:00</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>APPETISERS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Gai Satay</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Por Pia Tod</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tod Mun Pla</span>
+                        <span class="item-price">£10.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Yum Nua</span>
+                        <span class="item-price">£14.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Som Tum</span>
+                        <span class="item-price">£10.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tom Yum Goong</span>
+                        <span class="item-price">£10.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tom Kha Gai</span>
+                        <span class="item-price">£10.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Po Tak</span>
+                        <span class="item-price">£13.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>ENTREES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Pad Thai</span>
+                        <span class="item-price">£13.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pad See Ew</span>
+                        <span class="item-price">£13.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pad Kee Mow</span>
+                        <span class="item-price">£13.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pad Kraprao</span>
+                        <span class="item-price">£13.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Khaw Pad</span>
+                        <span class="item-price">£13.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pineapple Fried Rice</span>
+                        <span class="item-price">£14.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Massaman Curry</span>
+                        <span class="item-price">£14.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Green Curry</span>
+                        <span class="item-price">£14.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Panang Curry</span>
+                        <span class="item-price">£14.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Red Curry</span>
+                        <span class="item-price">£14.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Green Chicken Curry</span>
+                        <span class="item-price">£16.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Red Duck Curry</span>
+                        <span class="item-price">£17.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Jungle Curry</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Cashew Nut</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Ginger</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Oyster Sauce</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken with Garlic & Pepper</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef with Broccoli</span>
+                        <span class="item-price">£16.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef with Black Bean Sauce</span>
+                        <span class="item-price">£16.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pork with Chilli & Basil</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sweet & Sour Pork</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn with Garlic & Pepper</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn with Chilli & Basil</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn with Cashew Nut</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn with Ginger</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn with Oyster Sauce</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Panang Curry</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Green Curry</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Red Curry</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Massaman</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Panang Curry</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Green Curry</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Red Curry</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beef Massaman</span>
+                        <span class="item-price">£18.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Panang Curry</span>
+                        <span class="item-price">£19.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Green Curry</span>
+                        <span class="item-price">£19.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Red Curry</span>
+                        <span class="item-price">£19.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Massaman</span>
+                        <span class="item-price">£19.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck Panang Curry</span>
+                        <span class="item-price">£19.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck Red Curry</span>
+                        <span class="item-price">£19.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck Green Curry</span>
+                        <span class="item-price">£19.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Duck Massaman</span>
+                        <span class="item-price">£19.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>RICE & NOODLES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Steamed Jasmine Rice</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Egg Fried Rice</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Coconut Rice</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sticky Rice</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Noodle</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Noodle</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pad Thai with Prawns</span>
+                        <span class="item-price">£17.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Crispy Noodle with Seafood</span>
+                        <span class="item-price">£19.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Wheelchair accessible</div><div class="feature-tag">Offers takeaway</div><div class="feature-tag">Serves dine-in</div><div class="feature-tag">Serves alcohol</div><div class="feature-tag">Serves coffee</div><div class="feature-tag">Serves breakfast</div><div class="feature-tag">Serves lunch</div><div class="feature-tag">Serves dinner</div><div class="feature-tag">Has seating</div><div class="feature-tag">Free Wi-Fi</div><div class="feature-tag">Casual</div><div class="feature-tag">Family friendly</div><div class="feature-tag">Good for groups</div><div class="feature-tag">Accepts credit cards</div><div class="feature-tag">Plenty of parking</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_193ae23460eb.jpg" alt="Pho No. 1 - Vibe, By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe, By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_803e0383a7ac.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e34a7bc5c774.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6b9637b64e37.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4dbfd77d2020.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3c5cbdf9fa59.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_315030d308ab.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2faf32c285b9.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3ca223082578.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_dee22e8f679e.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_551364ec61f4.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f23061f1fbab.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_012d54a37f11.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_62f8fa571912.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7027a9d14cea.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5a381e4a2011.jpg" alt="Pho No. 1 - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d762b3647de6.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8993b042ac0d.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e5ebec11838b.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fa39246faa68.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_462a60a333f0.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0124bf2a3df8.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8be346a1d72f.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_cee56267d65a.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1d9f7cbc1664.jpg" alt="Pho No. 1 - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1a9529b5aa55.jpg" alt="Pho No. 1 - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_475761e8055b.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d40d2e986990.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_632d4e1e08ff.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_79e4dd29524e.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d309019f449b.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_efd6ea10cd52.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8048339270f7.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f1f440cbbb94.jpg" alt="Pho No. 1 - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4312533627f1.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_aeea8bffde6a.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a59475121181.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0a070560d93c.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d3cf52f82381.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2b7cfb62db59.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9a8df904de92.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_42e95dd1cfd9.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c355071598d8.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f50d02358c2d.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_927a2bc2f84c.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c13b8c92a213.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_540ac6a0ed77.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1b69be0f3ff6.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_23f831e60748.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_65b21064590a.jpg" alt="Pho No. 1 - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b8e3c83b7a2a.jpg" alt="Pho No. 1 - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b78135fdf339.jpg" alt="Pho No. 1 - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c8452aa1f70e.jpg" alt="Pho No. 1 - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_58d7a7d896e8.jpg" alt="Pho No. 1 - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_09753b1d8c29.jpg" alt="Pho No. 1 - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e2e6f726ef3f.jpg" alt="Pho No. 1 - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2021d6ed8a3e.jpg" alt="Pho No. 1 - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c8e0fc9d6707.jpg" alt="Pho No. 1 - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ca26942aec40.jpg" alt="Pho No. 1 - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e5dfa83d25b9.jpg" alt="Pho No. 1 - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8977481184fb.jpg" alt="Pho No. 1 - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_bd693b603087.jpg" alt="Pho No. 1 - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0a6950e1fa0c.jpg" alt="Pho No. 1 - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2b34f61d27ac.jpg" alt="Pho No. 1 - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d82f42605334.jpg" alt="Pho No. 1 - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8600ec64ceb0.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_61cc1678f555.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_badc9ea57a7b.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_56e4fe88b121.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_26806ca2fdb2.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a234f6f2e6ad.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7247b895ce9c.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_66c31b37e68a.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f5699fa12594.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_76ec8a77829b.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c9b3989e2ee5.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_df4baaf1604f.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f3adfc6db2c6.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4735e97264e1.jpg" alt="Pho No. 1 - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>

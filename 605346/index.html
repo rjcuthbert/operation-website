@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinclairs Oyster Bar</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_f8b49e04365e.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Sinclairs Oyster Bar</h1>
+            <div class="category">Oyster bar restaurant</div>
+            <p class="hero-description">Experience the historic charm of Sinclairs Oyster Bar in Manchester. Enjoy great beer, delicious food, and a vibrant atmosphere in a cosy, centrally located pub. Perfect for any occasion!</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>2 Cathedral Gates, Manchester M3 1SW</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:0161 834 0430" class="hero-phone-link">0161 834 0430</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">2 Cathedral Gates, Manchester M3 1SW</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2514748,53.4795307,-2.2414748,53.4895307&layer=mapnik&marker=53.4845307,-2.2464748"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=2%20Cathedral%20Gates%2C%20Manchester%20M3%201SW" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">12:00–22:00</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>LIGHT BITES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Soup</span>
+                        <span class="item-price">£4.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Beetroot Falafel</span>
+                        <span class="item-price">£5.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Olives & Feta</span>
+                        <span class="item-price">£6.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Marie Rose</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fresh Fish Goujons</span>
+                        <span class="item-price">£5.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Breaded Mushrooms</span>
+                        <span class="item-price">£4.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>DESSERTS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chocolate & Caramel Fondant</span>
+                        <span class="item-price">£6.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sticky Toffee Pudding</span>
+                        <span class="item-price">£6.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Apple Crumble</span>
+                        <span class="item-price">£5.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Dairy Ice-Cream</span>
+                        <span class="item-price">£5.25</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SANDWICHES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Cheese & Pickle</span>
+                        <span class="item-price">£4.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Bacon, Lettuce & Tomato</span>
+                        <span class="item-price">£5.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Coronation Chicken</span>
+                        <span class="item-price">£6.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fish Goujons</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Prawn Marie Rose</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SMALLER PORTIONS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Whitby Scampi</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Homemade Fish Fingers</span>
+                        <span class="item-price">£7.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sausage & Mash</span>
+                        <span class="item-price">£4.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spaghetti Bolognese</span>
+                        <span class="item-price">£6.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Grilled Chicken Strips</span>
+                        <span class="item-price">£5.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SIDES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chips</span>
+                        <span class="item-price">£2.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Onion Rings</span>
+                        <span class="item-price">£2.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Garlic Bread</span>
+                        <span class="item-price">£1.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>TEA & COFFEE</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Latte</span>
+                        <span class="item-price">£3.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cappuccino</span>
+                        <span class="item-price">£3.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Americano</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Espresso</span>
+                        <span class="item-price">£2.70</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tea</span>
+                        <span class="item-price">£2.70</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Hot Chocolate</span>
+                        <span class="item-price">£3.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SUNDAY LUNCH</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Traditional Roast Lunch</span>
+                        <span class="item-price">£11.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Small Portion</span>
+                        <span class="item-price">£8.95</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetarian Sunday Lunch</span>
+                        <span class="item-price">£10.95</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Wheelchair accessible</div><div class="feature-tag">Outdoor seating</div><div class="feature-tag">Serves great beer</div><div class="feature-tag">Serves great coffee</div><div class="feature-tag">Serves great dessert</div><div class="feature-tag">Popular for lunch</div><div class="feature-tag">Popular for dinner</div><div class="feature-tag">Good for solo dining</div><div class="feature-tag">Serves alcohol</div><div class="feature-tag">Has bar on site</div><div class="feature-tag">Casual</div><div class="feature-tag">Cosy</div><div class="feature-tag">Accepts reservations</div><div class="feature-tag">Accepts credit cards</div><div class="feature-tag">Has seating</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_ad1ea607c5da.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0fcc50bc696a.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_415b551d1237.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_27ffbd3897f2.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_59de90d185ba.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_970855115536.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1ccaf8b0ba41.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7f5ef4281f1a.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f88a90c9f1f2.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9c6918e95213.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8c3fd5554361.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ce5a40634952.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_24bbcd24cacb.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d14a18348029.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_491bb9808f8e.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_72d130fcbec6.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_748f5198bdbe.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_423fb4f31dd3.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c423f134e236.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_759af6945d15.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a20c8c431907.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9a13c4d92692.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e8cbcc5e1fd1.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9846922cb62f.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_78f8ea46de34.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b8e69bdc3f0c.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_93233a4085bb.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d4614c1979dc.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fc9a347e21d8.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6ce7ed32d928.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_982c272debe0.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_79412dd95774.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f7f0ccab7c13.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e0845599a27c.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6d160401ae4e.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_aad2e1e2bda2.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3d16864cb40e.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5be0076e17fe.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_53c13d32e72c.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_801f0db0c193.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ed038c439223.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5a258193353c.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_703e396deb45.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e40284bba2a9.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7b408a3c56ae.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ca5c29c4aa7b.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_418c7e57ea5a.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6f3914fd8786.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4fe7b280e385.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f60c6373f98f.jpg" alt="Sinclairs Oyster Bar - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4d7edadfb63f.jpg" alt="Sinclairs Oyster Bar - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_85b8ccce9349.jpg" alt="Sinclairs Oyster Bar - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9b198f894e19.jpg" alt="Sinclairs Oyster Bar - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4c04fea80898.jpg" alt="Sinclairs Oyster Bar - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_cbf0c1b0dfff.jpg" alt="Sinclairs Oyster Bar - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ebe131cd114b.jpg" alt="Sinclairs Oyster Bar - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1cb2e7028626.jpg" alt="Sinclairs Oyster Bar - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4c4c9ccefc08.jpg" alt="Sinclairs Oyster Bar - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b90173e1b465.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fd07e2ae3d25.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_090479d8ab61.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1b6603ee8f38.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_910937c6e9cb.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_25a78bd20d48.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3b0717516258.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6dae79188e1d.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7efefa3b3373.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_64238c3b1628.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8fc4aea16fc3.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_684bce7cfba6.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_859841cd9a44.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1d804aab389c.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_92ce3f55758d.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_266d9af4bc8c.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b0108e1a4a19.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_000a2da7ae6f.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8f08647e6059.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_03178cc3ba2f.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5d65e4330fcc.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_02339009366b.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c957dae4b3e3.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_73bc6ff918d3.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ec191c42b47e.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6754e3cd3f3f.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_591082b891a6.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a2b657710eb5.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_af212db743f3.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c2edd5e9a5b1.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a8d04eeb4e42.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_cd84421c48e9.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_09a8dbb087ef.jpg" alt="Sinclairs Oyster Bar - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fbfb9015a42c.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_475bb6dc97de.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f8b49e04365e.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1d24603b1819.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_caa5656fad71.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6d201792e9b3.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_75f7712b8bf2.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_abea146e9651.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_16b51b0df064.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_adf7420c0983.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2974e6eaee55.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c39e81f5bcde.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3e765ed14737.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2c124b437a0a.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f6942faf47b5.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_85b3a51b6fd3.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_88d9eae68506.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d33cf4b220e5.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_74de42147a4b.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6a0f907d27e6.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ac59562bbcdc.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a50efaf0228d.jpg" alt="Sinclairs Oyster Bar - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6b18dffd4a36.jpg" alt="Sinclairs Oyster Bar - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4b2373bcc0a3.jpg" alt="Sinclairs Oyster Bar - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_163d61b7706a.jpg" alt="Sinclairs Oyster Bar - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_186190e10fd8.jpg" alt="Sinclairs Oyster Bar - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c00485e39a64.jpg" alt="Sinclairs Oyster Bar - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7978543764c2.jpg" alt="Sinclairs Oyster Bar - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_bba6d02904d2.jpg" alt="Sinclairs Oyster Bar - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5c77c80b5c63.jpg" alt="Sinclairs Oyster Bar - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>

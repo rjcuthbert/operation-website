@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big John’s Manchester</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_2f7ff41e8692.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Big John’s Manchester</h1>
+            <div class="category">Fast food restaurant</div>
+            <p class="hero-description">Big John's Manchester: Rusholme's favorite spot for amazing burgers, pizzas, and more! Enjoy dine-in, takeaway, or delivery. Halal options available. Great for groups and families. Come see why we're so popular! Located in Manchester.</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>7 Wilmslow Rd, Manchester M14 5FT</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:0161 257 0155" class="hero-phone-link">0161 257 0155</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">7 Wilmslow Rd, Manchester M14 5FT</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2340515,53.452989699999996,-2.2240515000000003,53.4629897&layer=mapnik&marker=53.4579897,-2.2290515"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=7%20Wilmslow%20Rd%2C%20Manchester%20M14%205FT" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">11:00–23:00</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">11:00–23:00</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>FRIED CHICKEN</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Bone In</span>
+                        <span class="item-price">£1.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">2 Pieces</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Classic Strips</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Hot Wings</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>GRILLED CHICKEN</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">1/2 Chicken</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Full Chicken</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Grilled Strips</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>FRIES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Classic Fries</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cheese Fries</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spicy Fries</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>TORTILLA WRAPS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Doner</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Doner</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Doner</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spicy Chicken Supreme</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Grilled Chicken</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Veggie</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SALADS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Grilled Halloumi Salad</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Grilled Chicken Salad</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SIDES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Halloumi Sticks</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Onion Rings</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chilli Cheese Nuggets</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Nuggets</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>DIPS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">House</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pepper Mayo</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Herb</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Hot Chilli</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">BBQ</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sweet Chilli</span>
+                        <span class="item-price">£0.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>BURGERS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Supreme</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Spicy Chicken Supreme</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Grilled Chicken Supreme</span>
+                        <span class="item-price">£6.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Doner</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Veggie</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>KEBABS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Doner Pita</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Doner + Fries</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Doner Box</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Doner Pita</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Doner + Fries</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lamb Doner Box</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Doner Pita</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Doner + Fries</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mixed Doner Box</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>STONE BAKED PIZZA</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Margherita</span>
+                        <span class="item-price">£6.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegetarian</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Meat Feast</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Asian Style</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Garlic Bread</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Garlic Bread with Cheese</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>HAND SPUN MILKSHAKES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Strawberries</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Ferrero Rocher</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Bananas</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lotus Biscoff</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Oreo Cookies</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salted Caramel</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peanut Butter</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mango</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>MOCKTAILS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Virgin Mojito</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Strawberry Mojito</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mango Mojito</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>DRINKS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Apple Juice</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Orange Juice</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lucozade Orange</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Ribena Carton</span>
+                        <span class="item-price">£1.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Bottled Water</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cans</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Hot Drinks</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Red Bull</span>
+                        <span class="item-price">£2.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Wheelchair accessible</div><div class="feature-tag">Offers delivery</div><div class="feature-tag">Offers takeaway</div><div class="feature-tag">Serves dine-in</div><div class="feature-tag">Popular for lunch</div><div class="feature-tag">Popular for dinner</div><div class="feature-tag">Good for solo dining</div><div class="feature-tag">Serves halal food</div><div class="feature-tag">Serves late-night food</div><div class="feature-tag">Quick bite</div><div class="feature-tag">Serves dessert</div><div class="feature-tag">Has seating</div><div class="feature-tag">Casual</div><div class="feature-tag">Good for kids</div><div class="feature-tag">Accepts credit cards</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_82e028aed428.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f0531bb451ec.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ffcd5ba94683.jpg" alt="Big John’s Manchester - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_626cf276116e.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fd0e4fea9241.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_86d30c1f94d0.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1ffe554aa6ee.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d08766f3a7b6.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_3e9ab03ffae7.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_739cd805da60.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1cb5892aace9.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ab36c015bcb7.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5d6a3f233111.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e5b280fb01e2.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fb82d135c9d9.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_72b0bf2f7681.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_8bdddd85a0f2.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_cc616b167d03.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b8ccac574d2f.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_95f40efd000b.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2efe2a9dd605.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2381ad8e08a5.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a1796b5552a7.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7df567a6c92d.jpg" alt="Big John’s Manchester - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_594e354fa1a7.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d8bb73f0d407.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_978cae18ea0f.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6643416dee2c.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_593d89f75eba.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f578317d5f14.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e239f0c6f16c.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7fec56bcdb11.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5b0a7b63ff10.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d8fac35d30b1.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_5618efba90c5.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0e629cbf1d4d.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ce72fc0c3ea6.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_15ed712ca70a.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_41a71c0597da.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_78369d7abc82.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_440ed9e5923c.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_349ae682425a.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_adc0ae03379e.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d9a9ffe8b171.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_93134bb9ddc1.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e7dad196089f.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_60f1a94b6571.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6b06f3341019.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_773d90c0fabb.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_bc2fbb844c3d.jpg" alt="Big John’s Manchester - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_02f7ca05d18b.jpg" alt="Big John’s Manchester - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2fa4e173cb8f.jpg" alt="Big John’s Manchester - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_11fb9384498a.jpg" alt="Big John’s Manchester - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f51e90850f46.jpg" alt="Big John’s Manchester - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_f538245ee8e6.jpg" alt="Big John’s Manchester - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_57fad0dfae67.jpg" alt="Big John’s Manchester - Vibe" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Vibe</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_2f7ff41e8692.jpg" alt="Big John’s Manchester - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1827a40e1e56.jpg" alt="Big John’s Manchester - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1c89b82e0f24.jpg" alt="Big John’s Manchester - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e7501c5f9333.jpg" alt="Big John’s Manchester - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b0ea05c1f61f.jpg" alt="Big John’s Manchester - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_327817e7645c.jpg" alt="Big John’s Manchester - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4134182f9f4d.jpg" alt="Big John’s Manchester - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7ee66f4a4e2c.jpg" alt="Big John’s Manchester - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ac081e3971b1.jpg" alt="Big John’s Manchester - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9bfb75ac139e.jpg" alt="Big John’s Manchester - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_11e460be67cd.jpg" alt="Big John’s Manchester - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_48f23353116c.jpg" alt="Big John’s Manchester - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_56fc9f2178cf.jpg" alt="Big John’s Manchester - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d9c77d6101f7.jpg" alt="Big John’s Manchester - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>
