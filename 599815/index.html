@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corner &amp; Bloom</title>
+    <link rel="icon" type="image/png" href="tab_icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f1ea;
+            --accent: #d4684f;
+            --text: #2d2d2d;
+            --text-light: #666;
+            --border: #e0ddd5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Work Sans', sans-serif;
+            color: var(--text);
+            background: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .watermark-banner {
+            background: #dc143c;
+            color: black;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .watermark-banner a {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        .watermark-banner a:hover {
+            color: #fff;
+        }
+        
+        .hero {
+            
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/image_269616498e17.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 104, 79, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(212, 104, 79, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        }
+        
+        .category {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+        
+        .hero-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .hero-contact-item .icon {
+            font-size: 1.2rem;
+        }
+        
+        .hero-phone-link {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .hero-phone-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .info-grid.single-item {
+            grid-template-columns: 1fr;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .info-card h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .info-card .icon {
+            font-size: 1.5rem;
+        }
+        
+        .address-text {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+        
+        .map-container {
+            margin-top: 1rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .map-container iframe:hover {
+            border-color: var(--accent);
+        }
+        
+        .map-link-below {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .view-larger-map {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .view-larger-map:hover {
+            color: #b85540;
+            transform: translateX(4px);
+        }
+        
+        .contact-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #b85540;
+            text-decoration: underline;
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .hours-row:last-child {
+            border-bottom: none;
+        }
+        
+        .day {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .time {
+            color: var(--text-light);
+        }
+        
+        .closed {
+            color: #999;
+            font-style: italic;
+        }
+        
+        .menu-section {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .menu-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .menu-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto 0;
+        }
+        
+        .menu-category {
+            margin-bottom: 2.5rem;
+        }
+        
+        .menu-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-category h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .menu-items {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 1rem 0;
+            border-bottom: 1px dashed var(--border);
+            transition: padding-left 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            padding-left: 0.5rem;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            flex: 1;
+        }
+        
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-left: 1rem;
+        }
+        
+        .features-section {
+            margin: 3rem 0;
+        }
+        
+        .features-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .feature-tag {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-tag:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .gallery-section {
+            margin: 3rem 0;
+        }
+        
+        .gallery-section h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 1rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-label {
+            opacity: 1;
+        }
+        
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 3rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-contact-info {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container iframe {
+                height: 300px;
+            }
+            
+            .menu-section {
+                padding: 2rem 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="watermark-banner">
+        Like what you see? Buy this website now at <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a>
+    </div>
+        
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Corner &amp; Bloom</h1>
+            <div class="category">Cafe</div>
+            <p class="hero-description">Corner & Bloom in Didsbury offers a delightful experience with amazing food, friendly service, and a cozy atmosphere. Enjoy great coffee, brunch, and more in a trendy setting. Wheelchair accessible.</p>
+            <div class="hero-contact-info">
+                <div class="hero-contact-item"><span class="icon">📍</span>812b Wilmslow Rd, Didsbury, Manchester M20 6UH</div>
+                <div class="hero-contact-item"><span class="icon">📞</span><a href="tel:0161 434 8004" class="hero-phone-link">0161 434 8004</a></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="info-grid">
+            
+            <div class="info-card map-card">
+                <h3><span class="icon">📍</span> Location</h3>
+                <p class="address-text">812b Wilmslow Rd, Didsbury, Manchester M20 6UH</p>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="0" 
+                        scrolling="no" 
+                        marginheight="0" 
+                        marginwidth="0" 
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-2.2401059,53.409676,-2.2301059000000003,53.419676&layer=mapnik&marker=53.414676,-2.2351059"
+                        style="border: 2px solid var(--border); border-radius: 8px;">
+                    </iframe>
+                    <div class="map-link-below">
+                        <a href="https://www.openstreetmap.org/search?query=812b%20Wilmslow%20Rd%2C%20Didsbury%2C%20Manchester%20M20%206UH" target="_blank" rel="noopener noreferrer" class="view-larger-map">
+                            View on OpenStreetMap →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            
+            <div class="info-card">
+                <h3><span class="icon">🕐</span> Opening Hours</h3>
+                <div class="hours-table">
+                    <div class="hours-row"><span class="day">Monday</span><span class="time">09:00–16:00</span></div><div class="hours-row"><span class="day">Tuesday</span><span class="time">09:00–16:00</span></div><div class="hours-row"><span class="day">Wednesday</span><span class="time">09:00–16:00</span></div><div class="hours-row"><span class="day">Thursday</span><span class="time">09:00–16:00</span></div><div class="hours-row"><span class="day">Friday</span><span class="time">09:00–16:00</span></div><div class="hours-row"><span class="day">Saturday</span><span class="time">09:00–16:30</span></div><div class="hours-row"><span class="day">Sunday</span><span class="time">09:00–16:30</span></div>
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <div class="menu-section">
+                <h2>Menu</h2>
+                
+                <div class="menu-category">
+                    <h3>BREAKFAST</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Full Breakfast</span>
+                        <span class="item-price">£15.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegan Breakfast (VE)</span>
+                        <span class="item-price">£14.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lighter Breakfast</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegan Lighter Breakfast (VE)</span>
+                        <span class="item-price">£11.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Eggs Any Way (V)</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sausage Melt</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Smoked Salmon Bagel</span>
+                        <span class="item-price">£12.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Breakfast Roll</span>
+                        <span class="item-price">£8.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Breakfast Focaccia</span>
+                        <span class="item-price">£12.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegan Breakfast Focaccia (VE)</span>
+                        <span class="item-price">£11.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Granola (V) (Vegan options available upon request)</span>
+                        <span class="item-price">£9.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>EXTRAS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Grandad's Sausage or Bacon</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chorizo</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Smoked Salmon</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Halloumi</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Egg</span>
+                        <span class="item-price">£1.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Smashed Avocado</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Homemade Hash Brown</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Tomato or Mushrooms</span>
+                        <span class="item-price">£1.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegan Black Pudding or Sausage</span>
+                        <span class="item-price">£1.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sourdough Toast</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chips (Skinny/Chunky/Sweet Potato)</span>
+                        <span class="item-price">£5.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Parmesan Truffle Fries</span>
+                        <span class="item-price">£7.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SANDWICHES</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Reuben Club</span>
+                        <span class="item-price">£14.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Corner & Bloom Club</span>
+                        <span class="item-price">£13.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vegan Club (VE)</span>
+                        <span class="item-price">£13.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>BRUNCH</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">3 Cheese on Toast (V)</span>
+                        <span class="item-price">£9.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Avocado & Feta (V)</span>
+                        <span class="item-price">£10.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Halloumi & Mushrooms (V)</span>
+                        <span class="item-price">£13.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Avocado & Poached Eggs (V)</span>
+                        <span class="item-price">£13.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Steak & Egg</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Salmon Royale</span>
+                        <span class="item-price">£15.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Turkish Eggs (V)</span>
+                        <span class="item-price">£13.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">White Chocolate & Berry French Toast (V)</span>
+                        <span class="item-price">£13.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fried Chicken & Maple French Toast</span>
+                        <span class="item-price">£14.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pancakes</span>
+                        <span class="item-price">£13.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>SALADS/SOUPS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Caesar Salad</span>
+                        <span class="item-price">£10.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Seasonal Salad</span>
+                        <span class="item-price">£10.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Seasonal Soup</span>
+                        <span class="item-price">£8.00</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+                <div class="menu-category">
+                    <h3>DRINKS</h3>
+                    <div class="menu-items">
+                        
+                    <div class="menu-item">
+                        <span class="item-name">Espresso</span>
+                        <span class="item-price">£2.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Americano</span>
+                        <span class="item-price">£3.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Latte</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cappuccino</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Flat White</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mocha</span>
+                        <span class="item-price">£4.00</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Breakfast Tea</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Earl Grey Tea</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Green Tea</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Peppermint Tea</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Camomile Tea</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Lemon & Ginger Tea</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Fruit Tea</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Coca Cola</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Diet Coke</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">7up</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Appletiser</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Orange Juice</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Apple Juice</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cranberry Juice</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Still Water</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Sparkling Water</span>
+                        <span class="item-price">£2.40</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Virgin Mojito</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Virgin Strawberry Daiquiri</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Cranberry & Apple</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Virgin Cosmopolitan</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Elderflower Spritz</span>
+                        <span class="item-price">£5.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Iced Coffee</span>
+                        <span class="item-price">£3.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Iced Latte</span>
+                        <span class="item-price">£3.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Iced Mocha</span>
+                        <span class="item-price">£3.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Iced Caramel Latte</span>
+                        <span class="item-price">£3.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Iced Vanilla Latte</span>
+                        <span class="item-price">£3.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Iced Chai Latte</span>
+                        <span class="item-price">£3.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Iced Red Berry Latte</span>
+                        <span class="item-price">£3.60</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Iced Peach Tea</span>
+                        <span class="item-price">£3.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Strawberry</span>
+                        <span class="item-price">£3.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Vanilla</span>
+                        <span class="item-price">£3.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Chocolate</span>
+                        <span class="item-price">£3.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Banana</span>
+                        <span class="item-price">£3.80</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Strawberry & Banana</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Raspberry & White Chocolate</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Strawberry & Mango</span>
+                        <span class="item-price">£4.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Mojito</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Raspberry Mojito</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Strawberry Daiquiri</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Pina Colada</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Espresso Martini</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    <div class="menu-item">
+                        <span class="item-name">Passion Fruit Martini</span>
+                        <span class="item-price">£9.50</span>
+                    </div>
+                
+                    </div>
+                </div>
+            
+            </div>
+        
+        
+        
+            <div class="features-section">
+                <h2>What We Offer</h2>
+                <div class="features-grid">
+                    <div class="feature-tag">Wheelchair accessible</div><div class="feature-tag">Outdoor seating</div><div class="feature-tag">Serves great coffee</div><div class="feature-tag">Serves great dessert</div><div class="feature-tag">Popular for breakfast</div><div class="feature-tag">Popular for lunch</div><div class="feature-tag">Good for solo dining</div><div class="feature-tag">Good for working on laptop</div><div class="feature-tag">Serves alcohol</div><div class="feature-tag">Serves cocktails</div><div class="feature-tag">Serves healthy options</div><div class="feature-tag">Quick bite</div><div class="feature-tag">Serves vegan dishes</div><div class="feature-tag">Casual</div><div class="feature-tag">Accepts credit cards</div>
+                </div>
+            </div>
+        
+        
+        
+            <div class="gallery-section">
+                <h2>Gallery</h2>
+                <div class="gallery-grid">
+                    
+                <div class="gallery-item">
+                    <img src="images/image_269616498e17.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a720d769aa7d.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_83bd2500a905.jpg" alt="Corner &amp; Bloom - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_fdc1c7282ac9.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_825f1defea2d.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_192ba976c399.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_acfdf595ffa7.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4f9a6edb8290.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c2c74dbb29f5.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e72bce033599.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_766af305b5e1.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d7119026867b.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_07dfb18b2a7e.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1f8f26a6a6d1.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7532f76581af.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c5a35a2e46e2.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_876f16760e70.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c564ebf73cd3.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b6e8aa9f2333.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9c620d40bb87.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_07fb1c9bff68.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0e65719e4cc9.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ec5024157cf4.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_efe14c800e83.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_9e4ba96929cd.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_49f1f55cfbab.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_b238cca18baa.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d74a2dbd4204.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_eebd6bf79e66.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_359ac8390e0e.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d091efdc270a.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ec6f7756908a.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_4210ae01b19c.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_d19d424f0b6b.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_1873ec06f6dd.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_0b2d7fb705b7.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_ae9713003d66.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_6ba806a3eb59.jpg" alt="Corner &amp; Bloom - Photo" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Photo</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_61b3845e2a14.jpg" alt="Corner &amp; Bloom - Latest" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Latest</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_a96d835783e1.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_04ab1192c891.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_89c885fb9c29.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_e48dd04e2577.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_42f9eb3ee16f.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_44232995ade1.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_15b4961c1fc7.jpg" alt="Corner &amp; Bloom - By owner" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">By owner</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_358e02d51327.jpg" alt="Corner &amp; Bloom - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_c7a9fc73c026.jpg" alt="Corner &amp; Bloom - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_70f95d155cc6.jpg" alt="Corner &amp; Bloom - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_bab67ccf878a.jpg" alt="Corner &amp; Bloom - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_236151747c4e.jpg" alt="Corner &amp; Bloom - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                <div class="gallery-item">
+                    <img src="images/image_7df4d6e153d5.jpg" alt="Corner &amp; Bloom - Menu" loading="lazy" onerror="this.parentElement.style.display='none'">
+                    <div class="image-label">Menu</div>
+                </div>
+            
+                </div>
+            </div>
+        
+    </div>
+    
+    <footer>
+        <p>Any enquiries, contact: <a href="mailto:boostyourwebuk@gmail.com">boostyourwebuk@gmail.com</a></p>
+    </footer>
+</body>
+</html>
